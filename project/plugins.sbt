@@ -1,0 +1,8 @@
+//addSbtPlugin("com.frugalmechanic" % "fm-sbt-s3-resolver" % "0.12.0")
+addSbtPlugin("org.scalariform" % "sbt-scalariform" % "1.8.1")
+addSbtPlugin("org.scoverage" % "sbt-scoverage" % "1.5.0")
+addSbtPlugin("com.sksamuel.scapegoat" %% "sbt-scapegoat" % "1.0.4")
+//addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "0.14.5")
+addSbtPlugin("com.eed3si9n" % "sbt-buildinfo" % "0.7.0")
+addSbtPlugin("com.typesafe.sbt" % "sbt-git" % "0.9.3")
+//addSbtPlugin("com.dwijnand" % "sbt-dynver" % "2.0.0")
