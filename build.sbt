@@ -33,16 +33,7 @@ val commonSettings = List(
   //}
 )
 
-lazy val isCI = sys.props.getOrElse("CI", "false").toBoolean
-//def profile: Project => Project = p => sbtProfile match {
-//  case "concourse.ci" => p.disablePlugins(
-//    //ScapegoatSbtPlugin, // seems to be buggy to try to exclude it
-//    SbtScalariform,
-//    scoverage.ScoverageSbtPlugin
-//  )
-//  case _ => p
-//}
-
+lazy val isCI = sys.env.getOrElse("CI", "false").toBoolean
 def disabledPlugins = {
   val r = if (isCI) Seq(
     //ScapegoatSbtPlugin, // seems to be buggy to try to exclude it
