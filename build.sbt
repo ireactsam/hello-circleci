@@ -34,19 +34,16 @@ val commonSettings = List(
 )
 
 lazy val isCI = sys.env.getOrElse("CI", "false").toBoolean
-def disabledPlugins = {
-  val r = if (isCI) Seq(
+def disabledPlugins =
+  if (isCI) Seq(
     //ScapegoatSbtPlugin, // seems to be buggy to try to exclude it
     SbtScalariform,
     scoverage.ScoverageSbtPlugin
   ) else Nil
-  println(s"DISABLING: $r")
-  r
-}
 
 lazy val root = (project in file("."))
   .enablePlugins(BuildInfoPlugin, GitVersioning /* sbt-git: , GitVersioning, GitBranchPrompt*/)
-    .disablePlugins(disabledPlugins: _*)
+  .disablePlugins(disabledPlugins: _*)
   .settings(
     commonSettings,
     name := "hello-circleci",

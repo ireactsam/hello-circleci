@@ -24,8 +24,6 @@ jobs:
     steps:
       - checkout
 
-      - run: echo "CI=$CI"
-
       # Download and cache dependencies
       - restore_cache:
           keys:
