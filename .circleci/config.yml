@@ -24,14 +24,14 @@ jobs:
     steps:
       - checkout
 
-      - run: export
+      - run: echo "CI=$CI"
 
       # Download and cache dependencies
       - restore_cache:
           keys:
           - v1-hello-circleci-{{ .Branch }}-{{ checksum "project/build.properties" }}-{{ checksum "project/plugins.sbt" }}-{{ checksum "project/Dependencies.scala" }}-{{ checksum "build.sbt" }}
           # fallback to using the latest cache if no exact match is found
-          - v1-hello-circleci
+          #- v1-hello-circleci
 
       - run: sbt test:compile
 
