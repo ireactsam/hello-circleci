@@ -35,7 +35,7 @@ jobs:
       - run: sbt test:compile
 
       - save_cache:
-          key: v1-hello-circleci-{{ checksum "project/build.properties" }}-{{ checksum "project/plugins.sbt" }}-{{ checksum "project/Dependencies.scala" }}-{{ checksum "build.sbt" }}
+          key: v1-hello-circleci-{{ checksum "build.sbt" }}
           paths:
             - ~/.ivy2
             - ~/.sbt/boot
