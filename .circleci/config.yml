@@ -27,14 +27,14 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-hello-circleci-{{ .Branch }}-{{ checksum "project/build.properties" }}-{{ checksum "project/Dependencies.scala" }}
+            - v1-cache-{{ .Branch }}-{{ checksum "project/build.properties" }}-{{ checksum "project/Dependencies.scala" }}-{{ checksum "build.sbt" }}
             # fallback to using the latest cache if no exact match is found
-            #- v1-hello-circleci
+            - v1-cache
 
       - run: sbt test:compile
 
       - save_cache:
-          key: v1-hello-circleci-{{ .Branch }}-{{ checksum "project/build.properties" }}-{{ checksum "project/Dependencies.scala" }}
+          key: v1-cache-{{ .Branch }}-{{ checksum "project/build.properties" }}-{{ checksum "project/Dependencies.scala" }}-{{ checksum "build.sbt" }}
           paths:
             - ~/.ivy2
             - ~/.sbt/boot
