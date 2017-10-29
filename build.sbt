@@ -34,6 +34,7 @@ val commonSettings = List(
 )
 
 lazy val isCI = sys.env.getOrElse("CI", "false").toBoolean
+
 def disabledPlugins =
   if (isCI) Seq(
     //ScapegoatSbtPlugin, // seems to be buggy to try to exclude it
