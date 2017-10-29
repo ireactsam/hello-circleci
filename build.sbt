@@ -33,19 +33,29 @@ val commonSettings = List(
   //}
 )
 
-lazy val sbtProfile = sys.props.getOrElse("sbt.profile", "")
-def profile: Project => Project = p => sbtProfile match {
-  case "concourse.ci" => p.disablePlugins(
+lazy val isCI = sys.props.getOrElse("CI", "false").toBoolean
+//def profile: Project => Project = p => sbtProfile match {
+//  case "concourse.ci" => p.disablePlugins(
+//    //ScapegoatSbtPlugin, // seems to be buggy to try to exclude it
+//    SbtScalariform,
+//    scoverage.ScoverageSbtPlugin
+//  )
+//  case _ => p
+//}
+
+def disabledPlugins = {
+  val r = if (isCI) Seq(
     //ScapegoatSbtPlugin, // seems to be buggy to try to exclude it
     SbtScalariform,
     scoverage.ScoverageSbtPlugin
-  )
-  case _ => p
+  ) else Nil
+  println(s"DISABLING: $r")
+  r
 }
 
 lazy val root = (project in file("."))
-  .configure(profile)
   .enablePlugins(BuildInfoPlugin, GitVersioning /* sbt-git: , GitVersioning, GitBranchPrompt*/)
+    .disablePlugins(disabledPlugins: _*)
   .settings(
     commonSettings,
     name := "hello-circleci",
