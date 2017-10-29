@@ -24,8 +24,6 @@ jobs:
     steps:
       - checkout
 
-      - run: ls -laR ~
-
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -33,7 +31,7 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-hello-circleci
 
-      - run: sbt sbtVersion
+      - run: ls -laR ~
 
       - run: sbt test:compile
 
