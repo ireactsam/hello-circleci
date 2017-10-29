@@ -24,6 +24,8 @@ jobs:
     steps:
       - checkout
 
+      - run: export
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -39,8 +41,8 @@ jobs:
             - ~/.ivy2
             - ~/.sbt/boot
             - ~/.sbt/0.13
-            - $CIRCLE_WORKING_DIRECTORY/target
-            - $CIRCLE_WORKING_DIRECTORY/project/target
+            - target
+            - project/target
 
       # run tests!
       - run: sbt test:test
